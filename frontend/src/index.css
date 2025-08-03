@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Базовые стили для доступности и семантики */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans text-gray-800 antialiased;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  /* Focus styles для доступности */
+  button:focus,
+  a:focus,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    @apply ring-2 ring-lavender-500 ring-offset-2 outline-none;
+  }
+
+  /* Skip link для screen readers */
+  .skip-link {
+    @apply sr-only;
+  }
+
+  .skip-link:focus {
+    @apply not-sr-only absolute top-0 left-0 bg-lavender-600 text-white px-4 py-2 z-50 rounded-br;
+  }
+}
+
+/* Кастомные компоненты */
+@layer components {
+  .btn-primary {
+    @apply bg-lavender-600 hover:bg-lavender-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 focus:ring-2 focus:ring-lavender-500 focus:ring-offset-2 shadow-lg hover:shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply bg-gold-500 hover:bg-gold-600 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-all duration-200 focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 shadow-lg hover:shadow-xl;
+  }
+
+  .btn-outline {
+    @apply border-2 border-lavender-600 text-lavender-600 hover:bg-lavender-600 hover:text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 focus:ring-2 focus:ring-lavender-500 focus:ring-offset-2;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-beige-200;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, #FEFEF8 0%, #F3F0FF 50%, #FEF3C7 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #7C3AED, #D97706);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Утилиты для анимаций */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Стили для высокого контраста (WCAG 2.1 AA) */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    @apply bg-purple-800 border-2 border-purple-900;
+  }
+  
+  .btn-secondary {
+    @apply bg-yellow-500 border-2 border-yellow-800 text-gray-900;
+  }
+}
+
+/* Стили для печати */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
